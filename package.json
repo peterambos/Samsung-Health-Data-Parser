@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "csv": "^6.3.11",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5"
+  }
+}
