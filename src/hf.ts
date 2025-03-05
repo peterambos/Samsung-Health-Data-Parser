@@ -4,10 +4,11 @@
 
 
 // module imports
-const { parse } = require('csv-parse');
-const fs = require('fs');
+const { parse } = require('csv');
+const fileReadStream = require('filestream/read');
 
-const filename: string = 'heart_rate_measurements.csv'
+// global vars
+// const filename: string = 'heart_rate_measurements.csv'
 var HFRecords: HFRecord[] = [];
 
 
@@ -93,21 +94,33 @@ class HFRecord {
         const date = new Date(dateString);
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         return days[date.getDay()];
-    }
-}
+    };
+};
 
-/** Reads the heart rate data from the csv file	into heart rate records */
-fs.createReadStream('./data/' + filename, 'utf-8')
-    .pipe(parse({ from_line: 2, columns: true, ignore_last_delimiters: true }))
+
+/**
+ * Reads a CSV file and processes heart rate data.
+ * 
+ * This function takes a File object, reads its contents as a CSV formatted text,
+ * and parses each row to create HFRecord instances. It expects the CSV to have
+ * specific columns for heart rate and update time, starting from the second line.
+ * The parsed heart rate data is then stored in global data structures, and 
+ * calculations are performed to determine average heart rates.
+ * 
+ * @param file - The CSV file containing heart rate data to be processed.
+ */
+export function readCSV(file: File): void {
+    console.log("Reading file: " + file);
+    new fileReadStream(file).pipe(parse({ from_line: 2, columns: true, ignore_last_delimiters: true }))
     .on('data', (row: { [key: string]: string }) => {
         new HFRecord(row["com.samsung.health.heart_rate.update_time"], parseFloat(row["com.samsung.health.heart_rate.heart_rate"]));
-    })
+      })
     .on('end', () => {
+      console.log("Finished reading file: " + file.name + " with " + HFRecords.length + " records.");
         calculateHeartRateAverages();
         printResults();
     });
-
-
+};
 
 /**
  * Calculates average heart rates and updates data structures with the results.
@@ -151,15 +164,15 @@ function calculateHeartRateAverages() {
         hourData[record.hour][1] += record.bpm;
     });
 
-    yearData.forEach((value, key) => {
+    yearData.forEach((value) => {
         value[2] = Math.round(value[1] / value[0]);
     });
 
-    monthData.forEach((value, key) => {
+    monthData.forEach((value) => {
         value[2] = Math.round(value[1] / value[0]);
     });
 
-    dayData.forEach((value, key) => {
+    dayData.forEach((value) => {
         value[2] = Math.round(value[1] / value[0]);
     });
 
