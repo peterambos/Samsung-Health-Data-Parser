@@ -18,7 +18,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             <div>
                 <label for="csvFile" class="block my-1 mx-auto text-sm font-semibold text-gray-900 dark:text-white">Select CSV File</label>
                 <div class="mt-1">
-                    <input type="file" name="csvFile" id="csvFile" accept=".csv" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                    <input type="file" name="csvFile" id="csvFile" accept=".csv" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-black dark:placeholder-gray-400 file:px-1.5 file:bg-gray-900">
                 </div>
             </div>
             <div>
