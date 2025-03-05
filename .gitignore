@@ -133,4 +133,15 @@ dist
 .DS_Store
 
 # Build files
-build/
+dist
+dist-ssr
+*.local
+
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
