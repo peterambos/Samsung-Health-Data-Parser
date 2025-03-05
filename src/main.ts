@@ -11,12 +11,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <a href="https://github.com/peterambos/Samsung-Health-Data-Parser" target="_blank">
       <img src="${SHDPIcon}" class="h-24 my-6 mx-auto " alt="Logo" />
     </a>
-    <h1>Samsung Health Data Parser</h1>
-    <div class="justify-center p-8 rounded my-px-0 mx-auto shadow-md w-full max-w-md">
+    <h1 class="text-5xl font-semibold mb-4 text-center">Samsung Health Data Parser</h1>
+    <div class="justify-center p-2 rounded my-px-0 mx-auto shadow-md w-full max-w-md">
         <h2 class="text-2xl font-semibold mb-4 text-center">Upload CSV</h2>
         <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" class="space-y-4">
             <div>
-                <label for="csvFile" class="block my-0 mx-auto text-sm font-medium text-gray-900 dark:text-white">Select CSV File</label>
+                <label for="csvFile" class="block my-1 mx-auto text-sm font-semibold text-gray-900 dark:text-white">Select CSV File</label>
                 <div class="mt-1">
                     <input type="file" name="csvFile" id="csvFile" accept=".csv" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                 </div>
