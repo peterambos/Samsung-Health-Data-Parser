@@ -1,6 +1,6 @@
 import './style.css'
 import SHDPIcon from './icon.svg'
-import { readCSV } from './hf'
+import { readCSV } from './import';
 import { Buffer } from 'buffer';
 
 // @ts-ignore
